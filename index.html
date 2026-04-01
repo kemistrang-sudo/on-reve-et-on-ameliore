@@ -3,125 +3,482 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mon Gabon Demain — Startup</title>
-
+<title>Mon Gabon Demain — Notre terre, nos voix, demain.</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{
-  --vert:#0B4F2E;
-  --jaune:#FEDD00;
-  --blanc:#fff;
-}
+  :root {
+    --vert: #0B4F2E;
+    --vert-clair: #1a7a47;
+    --vert-pale: #e8f4ee;
+    --jaune: #FEDD00;
+    --jaune-fonce: #d4b800;
+    --bleu: #2E6DB0;
+    --bleu-clair: #4a8fd4;
+    --bleu-pale: #e8f0fa;
+    --blanc: #FFFFFF;
+    --gris: #2C2C2C;
+    --gris-clair: #f5f5f3;
+    --gris-moyen: #8a8a8a;
+    --shadow-premium: 0 20px 40px rgba(0,0,0,0.08);
+  }
 
-html{scroll-behavior:smooth}
-body{margin:0;font-family:Arial;background:#f5f5f5}
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
-header{background:var(--vert);padding:15px;position:sticky;top:0}
-nav a{color:white;margin-right:15px;text-decoration:none}
+  body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--gris);
+    background: var(--blanc);
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+  }
 
-section{padding:60px 20px}
-.hero{background:var(--vert);color:white;text-align:center}
+  h1, h2, h3, .serif { font-family: 'Cormorant Garamond', serif; }
 
-.btn{background:var(--jaune);padding:10px 20px;border:none;cursor:pointer}
+  /* ===== BARRE NATIONALE ===== */
+  .barre-nationale { display: flex; height: 6px; width: 100%; position: fixed; top: 0; z-index: 1001; }
+  .barre-nationale span { flex: 1; }
+  .barre-nationale .v { background: var(--vert); }
+  .barre-nationale .j { background: var(--jaune); }
+  .barre-nationale .b { background: var(--bleu); }
 
-.container{max-width:1000px;margin:auto}
-.card{background:white;padding:20px;margin:10px 0;border-radius:8px}
+  /* ===== HEADER ===== */
+  header {
+    background: var(--vert);
+    padding: 0 48px;
+    position: sticky;
+    top: 6px;
+    z-index: 100;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+  }
 
-input,textarea{width:100%;padding:10px;margin:5px 0}
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
 
-.hidden{display:none}
+  .logo { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+  .logo-text h1 { color: var(--blanc); font-size: 20px; font-weight: 700; line-height: 1.1; }
+  .logo-text p { color: var(--jaune); font-size: 10px; font-weight: 300; letter-spacing: 2px; text-transform: uppercase; }
+
+  nav { display: flex; align-items: center; gap: 32px; }
+  nav a { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 13px; font-weight: 500; transition: 0.2s; }
+  nav a:hover { color: var(--jaune); }
+
+  .btn-connexion {
+    background: var(--jaune);
+    color: var(--vert) !important;
+    padding: 9px 22px !important;
+    border-radius: 4px;
+    font-weight: 600 !important;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    background: var(--vert);
+    position: relative;
+    padding: 90px 48px;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+  }
+
+  .hero-content { max-width: 1200px; margin: 0 auto; width: 100%; z-index: 2; position: relative; }
+  .hero h2 { font-size: clamp(40px, 5vw, 64px); color: var(--blanc); line-height: 1.1; margin-bottom: 24px; }
+  .hero h2 em { color: var(--jaune); font-style: italic; }
+  .hero p.lead { color: rgba(255,255,255,0.8); font-size: 18px; max-width: 600px; margin-bottom: 40px; font-weight: 300; }
+
+  .btn-primary, .btn-secondary {
+    padding: 16px 32px;
+    border-radius: 6px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    transition: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+    border: none;
+  }
+
+  .btn-primary { background: var(--jaune); color: var(--vert); }
+  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); background: var(--blanc); }
+
+  .btn-secondary { background: rgba(255,255,255,0.1); color: var(--blanc); border: 1px solid rgba(255,255,255,0.2); }
+  .btn-secondary:hover { background: rgba(255,255,255,0.2); border-color: var(--jaune); }
+
+  /* ===== MODALE PREMIUM (Apple/GovTech Style) ===== */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(11, 79, 46, 0.85);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .modal-overlay.active { opacity: 1; pointer-events: auto; }
+
+  .modal-card {
+    background: var(--blanc);
+    width: 100%;
+    max-width: 650px;
+    border-radius: 24px;
+    overflow: hidden;
+    transform: translateY(40px) scale(0.95);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+  }
+
+  .modal-overlay.active .modal-card { transform: translateY(0) scale(1); }
+
+  .modal-header {
+    background: var(--vert-pale);
+    padding: 32px 40px;
+    position: relative;
+  }
+
+  .modal-header h2 { color: var(--vert); font-size: 28px; }
+  .modal-header p { color: var(--vert-clair); font-size: 14px; opacity: 0.8; }
+
+  .btn-close {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    background: var(--blanc);
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  .btn-close:hover { background: var(--jaune); transform: rotate(90deg); }
+
+  .modal-body { padding: 40px; }
+
+  .form-group { margin-bottom: 24px; }
+  .form-group label { display: block; font-size: 13px; font-weight: 600; color: var(--vert); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+  
+  .form-control {
+    width: 100%;
+    padding: 14px 18px;
+    border: 2px solid var(--gris-clair);
+    border-radius: 12px;
+    font-family: inherit;
+    font-size: 15px;
+    transition: all 0.2s;
+    background: var(--gris-clair);
+  }
+
+  .form-control:focus {
+    outline: none;
+    border-color: var(--vert);
+    background: var(--blanc);
+    box-shadow: 0 0 0 4px var(--vert-pale);
+  }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+  .btn-submit {
+    width: 100%;
+    padding: 18px;
+    background: var(--vert);
+    color: var(--blanc);
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 10px;
+  }
+  .btn-submit:hover { background: var(--vert-clair); transform: translateY(-2px); }
+
+  /* ===== VOTE SYSTEM ===== */
+  .idees-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 32px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 0;
+  }
+
+  .idee-card {
+    background: var(--blanc);
+    border-radius: 16px;
+    border: 1px solid var(--gris-clair);
+    padding: 32px;
+    transition: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .idee-card:hover { transform: translateY(-8px); border-color: var(--vert); box-shadow: var(--shadow-premium); }
+
+  .vote-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--gris-clair);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+    color: var(--gris);
+  }
+
+  .vote-btn.active {
+    background: var(--vert);
+    color: var(--jaune);
+    animation: pop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  @keyframes pop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+  }
+
+  .section-title { font-size: 42px; color: var(--vert); margin-bottom: 40px; text-align: center; }
+
+  /* Utilities */
+  .hidden { display: none; }
+  section { padding: 100px 48px; }
 
 </style>
 </head>
-
 <body>
 
+<div class="barre-nationale">
+  <span class="v"></span><span class="j"></span><span class="b"></span>
+</div>
+
 <header>
-<nav>
-<a href="#">Accueil</a>
-<a href="#idees">Idées</a>
-<a href="#ajouter">Proposer</a>
-<a href="#login">Connexion</a>
-</nav>
+  <div class="header-inner">
+    <a href="#" class="logo">
+      <div class="logo-text">
+        <h1>Mon Gabon Demain</h1>
+        <p>Plateforme Citoyenne</p>
+      </div>
+    </a>
+    <nav>
+      <a href="#idees">Explorer</a>
+      <a href="#impact">Impact</a>
+      <a href="#" class="btn-connexion">Espace Citoyen</a>
+    </nav>
+  </div>
 </header>
 
 <section class="hero">
-<h1>Mon Gabon Demain</h1>
-<p>Plateforme citoyenne moderne</p>
+  <div class="hero-content">
+    <h2>Le futur du <em>Gabon</em><br>s'écrit avec vous.</h2>
+    <p class="lead">Une plateforme sécurisée pour transformer vos idées en actions concrètes. Rejoignez 12 847 citoyens engagés.</p>
+    <div class="hero-actions">
+      <button class="btn-primary" onclick="openModal()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        Proposer une idée
+      </button>
+      <a href="#idees" class="btn-secondary">Voir les propositions</a>
+    </div>
+  </div>
 </section>
 
-<section id="login" class="container">
-<h2>Connexion</h2>
-<input type="text" id="username" placeholder="Nom">
-<button class="btn" onclick="login()">Se connecter</button>
-<p id="userDisplay"></p>
+<section id="idees" style="background: var(--gris-clair);">
+  <h2 class="section-title">Propositions populaires</h2>
+  <div class="idees-grid" id="ideesContainer">
+    </div>
 </section>
 
-<section id="ajouter" class="container">
-<h2>Proposer une idée</h2>
-<input type="text" id="titre" placeholder="Titre">
-<textarea id="description" placeholder="Description"></textarea>
-<button class="btn" onclick="addIdea()">Publier</button>
-</section>
+<div class="modal-overlay" id="modalIdea">
+  <div class="modal-card">
+    <button class="btn-close" onclick="closeModal()">×</button>
+    <div class="modal-header">
+      <h2>Nouvelle Proposition</h2>
+      <p>Votre idée sera examinée par la communauté puis par la Fabrique Citoyenne.</p>
+    </div>
+    <div class="modal-body">
+      <form id="ideaForm">
+        <div class="form-group">
+          <label>Titre de votre projet</label>
+          <input type="text" class="form-control" placeholder="Ex: Modernisation des écoles de l'Ogooué" required id="f-titre">
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label>Province</label>
+            <select class="form-control" id="f-province">
+              <option>Estuaire</option>
+              <option>Haut-Ogooué</option>
+              <option>Moyen-Ogooué</option>
+              <option>Ngounié</option>
+              <option>Nyanga</option>
+              <option>Ogooué-Ivindo</option>
+              <option>Ogooué-Lolo</option>
+              <option>Ogooué-Maritime</option>
+              <option>Woleu-Ntem</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Catégorie</label>
+            <select class="form-control" id="f-cat">
+              <option>Santé</option>
+              <option>Éducation</option>
+              <option>Infrastructures</option>
+              <option>Numérique</option>
+              <option>Économie</option>
+            </select>
+          </div>
+        </div>
 
-<section id="idees" class="container">
-<h2>Idées</h2>
-<div id="ideasList"></div>
-</section>
+        <div class="form-group">
+          <label>Description détaillée</label>
+          <textarea class="form-control" rows="4" placeholder="Expliquez votre idée, le problème identifié et la solution proposée..." required id="f-desc"></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit">Publier ma proposition nationale</button>
+      </form>
+    </div>
+  </div>
+</div>
 
 <script>
-let user = localStorage.getItem('user') || null;
-let ideas = JSON.parse(localStorage.getItem('ideas')) || [];
+  /**
+   * DATA INITIALE & GESTION DU STORE
+   */
+  let idees = JSON.parse(localStorage.getItem('gabon_idees')) || [
+    {
+      id: 1,
+      titre: "Centres de santé ruraux connectés",
+      desc: "Déployer un réseau de 45 centres de santé équipés dans les zones enclavées avec télémédecine.",
+      author: "M. Essono",
+      province: "Ogooué-Ivindo",
+      cat: "Santé",
+      votes: 2341,
+      voted: false
+    },
+    {
+      id: 2,
+      titre: "Tablettes numériques pour lycéens",
+      desc: "Doter chaque lycéen de manuels nationaux numérisés pour réduire la fracture digitale.",
+      author: "Rose Nzamba",
+      province: "Estuaire",
+      cat: "Éducation",
+      votes: 1887,
+      voted: false
+    }
+  ];
 
-function login(){
-  const name = document.getElementById('username').value;
-  if(!name) return alert('Entre un nom');
-  localStorage.setItem('user', name);
-  location.reload();
-}
+  /**
+   * RENDU DES CARTES
+   */
+  function renderIdees() {
+    const container = document.getElementById('ideesContainer');
+    container.innerHTML = '';
 
-function displayUser(){
-  if(user){
-    document.getElementById('userDisplay').innerText = "Connecté en tant que " + user;
+    idees.forEach(idee => {
+      const card = document.createElement('div');
+      card.className = 'idee-card';
+      card.innerHTML = `
+        <div style="margin-bottom: 20px">
+          <span style="font-size:10px; font-weight:700; text-transform:uppercase; color:var(--bleu); background:var(--bleu-pale); padding:4px 10px; border-radius:4px; margin-bottom:12px; display:inline-block;">${idee.cat}</span>
+          <h3 style="font-size:22px; color:var(--vert); margin-bottom:10px;">${idee.titre}</h3>
+          <p style="font-size:14px; color:var(--gris-moyen); line-height:1.6; margin-bottom:20px;">${idee.desc}</p>
+        </div>
+        <div style="margin-top:auto; display:flex; align-items:center; justify-content:space-between; border-top:1px solid var(--gris-clair); pt:20px; padding-top:20px">
+          <div style="font-size:12px; color:var(--gris)">
+            <strong>${idee.author}</strong><br>
+            <span style="color:var(--gris-moyen)">${idee.province}</span>
+          </div>
+          <button class="vote-btn ${idee.voted ? 'active' : ''}" onclick="toggleVote(${idee.id})">
+            <span>▲</span>
+            <span class="v-count">${idee.votes.toLocaleString()}</span>
+          </button>
+        </div>
+      `;
+      container.appendChild(card);
+    });
   }
-}
 
-function addIdea(){
-  if(!user) return alert('Connecte-toi');
+  /**
+   * SYSTÈME DE VOTE
+   */
+  function toggleVote(id) {
+    const index = idees.findIndex(i => i.id === id);
+    if (index === -1) return;
 
-  const titre = document.getElementById('titre').value;
-  const desc = document.getElementById('description').value;
+    if (!idees[index].voted) {
+      idees[index].votes++;
+      idees[index].voted = true;
+    } else {
+      idees[index].votes--;
+      idees[index].voted = false;
+    }
+    
+    saveAndRefresh();
+  }
 
-  if(!titre || !desc) return alert('Remplis tout');
+  /**
+   * GESTION MODALE
+   */
+  function openModal() {
+    document.getElementById('modalIdea').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
 
-  ideas.push({titre, desc, votes:0});
-  localStorage.setItem('ideas', JSON.stringify(ideas));
-  location.reload();
-}
+  function closeModal() {
+    document.getElementById('modalIdea').classList.remove('active');
+    document.body.style.overflow = 'auto';
+  }
 
-function vote(index){
-  ideas[index].votes++;
-  localStorage.setItem('ideas', JSON.stringify(ideas));
-  renderIdeas();
-}
+  /**
+   * AJOUT D'IDÉE
+   */
+  document.getElementById('ideaForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    const newIdee = {
+      id: Date.now(),
+      titre: document.getElementById('f-titre').value,
+      desc: document.getElementById('f-desc').value,
+      province: document.getElementById('f-province').value,
+      cat: document.getElementById('f-cat').value,
+      author: "Citoyen Anonyme",
+      votes: 1,
+      voted: true
+    };
 
-function renderIdeas(){
-  const container = document.getElementById('ideasList');
-  container.innerHTML = '';
-
-  ideas.forEach((idea,i)=>{
-    container.innerHTML += `
-      <div class="card">
-        <h3>${idea.titre}</h3>
-        <p>${idea.desc}</p>
-        <button onclick="vote(${i})">👍 ${idea.votes}</button>
-      </div>
-    `;
+    idees.unshift(newIdee);
+    saveAndRefresh();
+    closeModal();
+    document.getElementById('ideaForm').reset();
+    
+    // Smooth scroll to news
+    window.location.hash = "idees";
   });
-}
 
-// INIT
-renderIdeas();
-displayUser();
+  function saveAndRefresh() {
+    localStorage.setItem('gabon_idees', JSON.stringify(idees));
+    renderIdees();
+  }
+
+  // Initialisation
+  document.addEventListener('DOMContentLoaded', renderIdees);
 </script>
 
 </body>
