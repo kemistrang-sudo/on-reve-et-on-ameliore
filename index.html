@@ -3,213 +3,242 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mon Gabon Demain — Notre terre, nos voix, demain.</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>Mon Gabon Demain — Excellence Citoyenne</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --vert: #0B4F2E; --vert-clair: #1a7a47; --vert-pale: #e8f4ee;
-    --jaune: #FEDD00; --jaune-fonce: #d4b800;
-    --bleu: #2E6DB0; --bleu-clair: #4a8fd4; --bleu-pale: #e8f0fa;
-    --blanc: #FFFFFF; --gris: #2C2C2C; --gris-clair: #f5f5f3; --gris-moyen: #8a8a8a;
-    --statut-examen: #ff9800; --statut-retenu: #4caf50; --statut-cours: #2196f3;
-    --rouge-critique: #e74c3c;
+    --vert: #0B4F2E; --vert-glow: rgba(11, 79, 46, 0.15);
+    --jaune: #FEDD00; --jaune-glow: rgba(254, 221, 0, 0.4);
+    --bleu: #2E6DB0; --bleu-pale: #e8f0fa;
+    --or: linear-gradient(135deg, #FEDD00 0%, #d4b800 100%);
+    --glass: rgba(255, 255, 255, 0.85);
+    --gris: #2C2C2C; --gris-clair: #f8f9fa;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'Poppins', sans-serif; color: var(--gris); background: var(--blanc); overflow-x: hidden; scroll-behavior: smooth; }
-  h1, h2, h3, h4, .serif { font-family: 'Cormorant Garamond', serif; }
+  body { font-family: 'Poppins', sans-serif; background: #fdfdfb; color: var(--gris); scroll-behavior: smooth; overflow-x: hidden; }
+  h1, h2, h3, .serif { font-family: 'Cormorant Garamond', serif; }
 
   /* BARRE NATIONALE */
-  .barre-nationale { display: flex; height: 6px; width: 100%; position: fixed; top: 0; z-index: 1001; }
+  .barre-nationale { display: flex; height: 6px; width: 100%; position: fixed; top: 0; z-index: 1100; }
   .barre-nationale span { flex: 1; }
   .barre-nationale .v { background: var(--vert); }
   .barre-nationale .j { background: var(--jaune); }
   .barre-nationale .b { background: var(--bleu); }
 
-  header { background: var(--vert); padding: 0 48px; position: sticky; top: 6px; z-index: 1000; box-shadow: 0 2px 20px rgba(0,0,0,0.3); }
-  .header-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; max-width: 1200px; margin: 0 auto; }
-  .logo-text h1 { color: var(--blanc); font-size: 20px; font-weight: 700; line-height: 1.1; }
-  .logo-text p { color: var(--jaune); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; }
+  /* HEADER GLASSMORPHISM */
+  header {
+    background: var(--glass); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+    padding: 15px 48px; position: sticky; top: 6px; z-index: 1000;
+    display: flex; justify-content: space-between; align-items: center;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+  }
 
-  .hero { background: var(--vert); padding: 100px 48px; min-height: 450px; display: flex; align-items: center; }
-  .hero h2 { font-size: clamp(35px, 5vw, 60px); color: var(--blanc); line-height: 1.1; margin-bottom: 20px; }
+  .logo-container { display: flex; align-items: center; gap: 12px; }
+  .logo-icon {
+    width: 40px; height: 40px; background: var(--vert); border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 15px var(--vert-glow); border: 1px solid rgba(255,255,255,0.2);
+    position: relative; overflow: hidden;
+  }
+  .logo-icon::after {
+    content: ""; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+    transform: rotate(45deg); animation: shine 3s infinite;
+  }
+  @keyframes shine { 0% { left: -100%; } 100% { left: 100%; } }
+
+  .user-badge { background: var(--or); padding: 8px 18px; border-radius: 50px; font-size: 11px; font-weight: 700; color: var(--vert); box-shadow: 0 4px 12px var(--jaune-glow); }
+
+  /* HERO */
+  .hero { background: var(--vert); padding: 100px 48px; min-height: 450px; display: flex; align-items: center; position: relative; color: white; }
+  .hero h2 { font-size: clamp(35px, 5vw, 60px); line-height: 1.1; margin-bottom: 20px; }
   .hero h2 em { color: var(--jaune); font-style: italic; }
-  .btn-primary { background: var(--jaune); color: var(--vert); padding: 16px 32px; border-radius: 6px; font-weight: 600; cursor: pointer; border: none; font-family: 'Poppins'; }
 
-  section { padding: 80px 48px; }
-  .section-title { font-size: 42px; text-align: center; margin-bottom: 50px; color: var(--vert); }
+  /* FILTRES & RECHERCHE */
+  .filter-bar { max-width: 1200px; margin: -35px auto 40px; padding: 25px; background: white; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.08); display: flex; gap: 15px; position: relative; z-index: 10; }
+  .search-input { flex-grow: 1; padding: 12px 20px; border-radius: 12px; border: 1px solid #eee; font-size: 14px; outline: none; }
+  .select-prov { padding: 12px; border-radius: 12px; border: 1px solid #eee; background: var(--gris-clair); font-weight: 600; }
+
+  /* GRID & CARDS */
+  .section-container { padding: 60px 48px; max-width: 1300px; margin: 0 auto; }
+  .idees-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 30px; }
   
-  /* GRID IDEES */
-  .idees-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 25px; max-width: 1200px; margin: 0 auto; }
-  .idee-card { background: var(--blanc); padding: 30px; border-radius: 16px; border: 1px solid var(--gris-clair); display: flex; flex-direction: column; transition: 0.3s; }
-  .status-light { display: inline-flex; align-items: center; gap: 8px; font-size: 10px; font-weight: 700; text-transform: uppercase; margin-bottom: 15px; }
-  .light { width: 8px; height: 8px; border-radius: 50%; display: inline-block; box-shadow: 0 0 10px currentColor; }
+  .idee-card {
+    background: white; border-radius: 24px; padding: 30px; border: 1px solid rgba(0,0,0,0.03);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.02); transition: 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    display: flex; flex-direction: column;
+  }
+  .idee-card:hover { transform: translateY(-10px); box-shadow: 0 30px 60px rgba(11, 79, 46, 0.08); }
 
-  /* TEMOIGNAGES */
-  .temoignage-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; max-width: 1200px; margin: 0 auto; }
-  .temoignage-card { background: #fff; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border-top: 4px solid var(--jaune); }
-  .temoignage-card.critique { border-top-color: var(--rouge-critique); }
-  .user-info { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; }
-  .avatar { width: 50px; height: 50px; border-radius: 50%; background: var(--gris-clair); display: flex; align-items: center; justify-content: center; font-weight: 700; color: var(--vert); }
-  .quote { font-size: 14px; line-height: 1.6; color: var(--gris-moyen); font-style: italic; }
+  /* LUMIÈRES & PROGRESSION */
+  .status-line { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+  .light-tag { display: inline-flex; align-items: center; gap: 8px; font-size: 10px; font-weight: 700; background: #f8f9fa; padding: 5px 12px; border-radius: 50px; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; position: relative; }
+  .dot::after { content: ""; position: absolute; inset: -3px; border-radius: 50%; background: currentColor; opacity: 0.4; animation: pulse 2s infinite; }
+  @keyframes pulse { 0% { transform: scale(1); opacity: 0.4; } 100% { transform: scale(2.5); opacity: 0; } }
 
-  /* FABRIQUE (TRAITEMENT) */
-  .fabrique-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; max-width: 1200px; margin: 0 auto; margin-bottom: 60px; }
-  .etape-card { background: var(--vert-pale); padding: 25px; border-radius: 12px; text-align: center; }
+  .prog-bg { height: 6px; background: #eee; border-radius: 10px; margin: 15px 0; overflow: hidden; }
+  .prog-bar { height: 100%; transition: 1s; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+
+  /* TÉMOIGNAGES */
+  .temoignage-card { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border-left: 5px solid var(--jaune); height: 100%; }
+  .temoignage-card.critique { border-left-color: #e74c3c; background: #fffcfc; }
 
   /* MODALE */
-  .modal-overlay { position: fixed; inset: 0; background: rgba(11, 79, 46, 0.85); backdrop-filter: blur(10px); display: flex; align-items: center; justify-content: center; z-index: 2000; opacity: 0; pointer-events: none; transition: 0.3s; }
-  .modal-overlay.active { opacity: 1; pointer-events: auto; }
-  .modal-card { background: var(--blanc); width: 600px; border-radius: 24px; padding: 40px; }
-  .form-control { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; margin: 8px 0 20px; font-family: 'Poppins'; }
+  .modal-overlay { position: fixed; inset: 0; background: rgba(11, 79, 46, 0.9); backdrop-filter: blur(10px); display: none; align-items: center; justify-content: center; z-index: 2000; padding: 20px; }
+  .modal-overlay.active { display: flex; }
+  .modal-card { background: white; width: 100%; max-width: 550px; border-radius: 28px; padding: 40px; position: relative; }
+  .form-control { width: 100%; padding: 12px; border: 1px solid #eee; border-radius: 10px; margin: 8px 0 18px; font-family: 'Poppins'; }
+  .btn-submit { width: 100%; background: var(--vert); color: white; padding: 15px; border: none; border-radius: 12px; font-weight: 700; cursor: pointer; }
 
-  footer { background: #111; color: #fff; padding: 60px 48px; text-align: center; }
+  .btn-vote { border: none; background: #f0f2f5; padding: 10px 20px; border-radius: 12px; font-weight: 700; cursor: pointer; transition: 0.3s; }
+  .btn-vote.active { background: var(--or); color: var(--vert); }
 </style>
 </head>
 <body>
 
-<div class="barre-nationale">
-  <span class="v"></span><span class="j"></span><span class="b"></span>
-</div>
+<div class="barre-nationale"><span class="v"></span><span class="j"></span><span class="b"></span></div>
 
 <header>
-  <div class="header-inner">
-    <div class="logo-text"><h1>Mon Gabon Demain</h1><p>Plateforme Citoyenne</p></div>
-    <nav style="display:flex; gap:25px;">
-      <a href="#idees" style="color:white; text-decoration:none; font-size:13px;">Propositions</a>
-      <a href="#traitement" style="color:white; text-decoration:none; font-size:13px;">Traitement</a>
-      <a href="#temoignages" style="color:white; text-decoration:none; font-size:13px;">Avis</a>
-    </nav>
+  <div class="logo-container">
+    <div class="logo-icon"><span style="color:white; font-weight:900; font-size:20px;">G</span></div>
+    <div>
+      <h1 class="serif" style="font-size:22px; margin:0; color:var(--vert);">Mon Gabon Demain</h1>
+      <p style="font-size:8px; text-transform:uppercase; letter-spacing:2px; margin:0; opacity:0.6;">Plateforme de Souveraineté Citoyenne</p>
+    </div>
   </div>
+  <div class="user-badge" id="userRank">🎖️ Citoyen : <span id="vCount">14</span> votes</div>
 </header>
 
 <section class="hero">
-  <div class="hero-content">
-    <h2>Chaque province,<br>une <em>voix</em> pour l'essor.</h2>
-    <p style="color:rgba(255,255,255,0.8); margin-bottom:30px; max-width:600px;">Découvrez les projets en cours de traitement pour les 9 provinces du Gabon.</p>
-    <button class="btn-primary" onclick="openModal()">+ Proposer une idée</button>
+  <div style="max-width:800px;">
+    <h2>L'essor vers la félicité<br><em>commence par votre idée.</em></h2>
+    <p style="opacity:0.8; margin-bottom:30px;">Déposez, votez, et suivez la réalisation des projets provinciaux.</p>
+    <button class="btn-submit" style="width:auto; padding:15px 40px;" onclick="openModal()">+ Proposer un projet</button>
   </div>
 </section>
 
-<section id="idees" style="background:var(--gris-clair)">
-  <h2 class="section-title">Les 9 Provinces en Action</h2>
-  <div class="idees-grid" id="ideesContainer">
+<div class="filter-bar">
+  <input type="text" class="search-input" id="search" placeholder="Rechercher un projet (ex: hôpital, route...)" onkeyup="filter()">
+  <select class="select-prov" id="provFilter" onchange="filter()">
+    <option value="all">Toutes les Provinces</option>
+    <option>Estuaire (G1)</option><option>Haut-Ogooué (G2)</option><option>Moyen-Ogooué (G3)</option>
+    <option>Ngounié (G4)</option><option>Nyanga (G5)</option><option>Ogooué-Ivindo (G6)</option>
+    <option>Ogooué-Lolo (G7)</option><option>Ogooué-Maritime (G8)</option><option>Woleu-Ntem (G9)</option>
+  </select>
+</div>
+
+<section class="section-container">
+  <h2 class="serif" style="font-size:32px; margin-bottom:40px; text-align:center;">Projets des 9 Provinces</h2>
+  <div class="idees-grid" id="container">
     </div>
 </section>
 
-<section id="traitement">
-  <h2 class="section-title">Le Cycle de la Fabrique</h2>
-  <div class="fabrique-grid">
-    <div class="etape-card"><h4>1. Vote</h4><p style="font-size:12px; opacity:0.7;">Appui populaire</p></div>
-    <div class="etape-card"><h4>2. Examen</h4><p style="font-size:12px; opacity:0.7;">Faisabilité technique</p></div>
-    <div class="etape-card"><h4>3. Retenu</h4><p style="font-size:12px; opacity:0.7;">Validation budgétaire</p></div>
-    <div class="etape-card"><h4>4. Réalisation</h4><p style="font-size:12px; opacity:0.7;">Suivi de chantier</p></div>
-  </div>
-
-  <div id="temoignages" style="margin-top:40px;">
-    <h3 class="serif" style="text-align:center; font-size:32px; margin-bottom:40px; color:var(--vert);">Paroles de Citoyens</h3>
-    <div class="temoignage-grid">
-      
-      <div class="temoignage-card">
-        <div class="user-info">
-          <div class="avatar">OC</div>
-          <div><strong>Okoumba Charles</strong><br><span style="font-size:11px; color:var(--vert);">Projet : Kits Agricoles (G7)</span></div>
-        </div>
-        <p class="quote">"J'ai proposé une aide pour les planteurs de l'Ogooué-Lolo. Voir mon idée passer en 'Examen' après seulement 200 votes me donne enfin l'impression d'être écouté par l'administration. C'est concret !"</p>
-      </div>
-
-      <div class="temoignage-card">
-        <div class="user-info">
-          <div class="avatar">JR</div>
-          <div><strong>Jeanne Retondo</strong><br><span style="font-size:11px; color:var(--bleu);">Projet : Éclairage Port-Gentil</span></div>
-        </div>
-        <p class="quote">"Mon idée est 'Retenue' depuis 3 mois. C'est encourageant, mais j'attends maintenant de voir les premiers travaux sur le terrain. La plateforme est belle, mais la vitesse d'exécution doit suivre."</p>
-      </div>
-
-      <div class="temoignage-card critique">
-        <div class="user-info">
-          <div class="avatar">OM</div>
-          <div><strong>Obiang Me Nzué</strong><br><span style="font-size:11px; color:var(--rouge-critique);">Projet : Route Oyem-Bitam</span></div>
-        </div>
-        <p class="quote">"C'est bien de voter, mais le système de 'La Fabrique' manque de clarté. Pourquoi certaines idées avec moins de votes passent avant les nôtres ? Je dénonce un manque de transparence dans les critères d'examen."</p>
-      </div>
-
+<section class="section-container" style="background:var(--gris-clair); border-radius:40px; margin-bottom:60px;">
+  <h2 class="serif" style="text-align:center; font-size:32px; margin-bottom:40px;">Paroles de Citoyens & Transparence</h2>
+  <div class="idees-grid">
+    <div class="temoignage-card">
+      <strong>Okoumba Charles</strong> <span style="font-size:11px; opacity:0.5;">(G7)</span>
+      <p style="font-size:13px; font-style:italic; margin-top:10px;">"Voir mon idée sur les kits agricoles passer en 'Examen' est une preuve de changement. On se sent enfin acteur."</p>
+    </div>
+    <div class="temoignage-card">
+      <strong>Jeanne Retondo</strong> <span style="font-size:11px; opacity:0.5;">(G8)</span>
+      <p style="font-size:13px; font-style:italic; margin-top:10px;">"Le projet est retenu, j'attends de voir la barre de progression bouger pour le chantier naval."</p>
+    </div>
+    <div class="temoignage-card critique">
+      <strong>Obiang Me Nzué</strong> <span style="font-size:11px; color:#e74c3c;">(G9)</span>
+      <p style="font-size:13px; font-style:italic; margin-top:10px;">"Attention au manque de clarté sur les budgets ! Nous exigeons un audit sur la route Oyem-Bitam."</p>
     </div>
   </div>
 </section>
 
-<div class="modal-overlay" id="modalIdea">
+<div class="modal-overlay" id="modal">
   <div class="modal-card">
-    <h2 class="serif" style="color:var(--vert); margin-bottom:20px;">Nouvelle Proposition</h2>
+    <h2 class="serif" style="margin-bottom:20px;">Nouvelle Proposition</h2>
     <form id="ideaForm">
-      <label style="font-size:11px; font-weight:700;">PROVINCE</label>
-      <select id="f-province" class="form-control">
+      <label style="font-size:10px; font-weight:700;">PROVINCE</label>
+      <select class="form-control" id="f-prov">
         <option>Estuaire (G1)</option><option>Haut-Ogooué (G2)</option><option>Moyen-Ogooué (G3)</option>
         <option>Ngounié (G4)</option><option>Nyanga (G5)</option><option>Ogooué-Ivindo (G6)</option>
         <option>Ogooué-Lolo (G7)</option><option>Ogooué-Maritime (G8)</option><option>Woleu-Ntem (G9)</option>
       </select>
-      <label style="font-size:11px; font-weight:700;">TITRE</label>
-      <input type="text" id="f-titre" class="form-control" required>
-      <label style="font-size:11px; font-weight:700;">DESCRIPTION</label>
-      <textarea id="f-desc" class="form-control" rows="4" required></textarea>
-      <button type="submit" class="btn-primary" style="width:100%;">Publier</button>
-      <button type="button" onclick="closeModal()" style="width:100%; background:none; border:none; margin-top:10px; cursor:pointer;">Fermer</button>
+      <label style="font-size:10px; font-weight:700;">TITRE DU PROJET</label>
+      <input type="text" class="form-control" id="f-titre" required>
+      <label style="font-size:10px; font-weight:700;">DESCRIPTION & IMPACT</label>
+      <textarea class="form-control" id="f-desc" rows="4" required></textarea>
+      <button type="submit" class="btn-submit">Soumettre à la Fabrique Citoyenne</button>
+      <button type="button" style="width:100%; background:none; border:none; margin-top:10px; cursor:pointer; color:#999;" onclick="closeModal()">Annuler</button>
     </form>
   </div>
 </div>
 
-<footer>
-  <p>© 2025 République Gabonaise — Unité, Travail, Justice.</p>
-</footer>
-
 <script>
-  const data = [
-    { id: 1, p: "Estuaire (G1)", t: "Navettes maritimes", d: "Relier Owendo à Libreville-Nord par mer.", s: "status-cours", l: "En cours", v: 2450 },
-    { id: 2, p: "Haut-Ogooué (G2)", t: "Cité des Étudiants Masuku", d: "Rénovation complète des pavillons.", s: "status-retenu", l: "Retenu", v: 1200 },
-    { id: 3, p: "Moyen-Ogooué (G3)", t: "Protection des Berges", d: "Lutter contre l'érosion à Lambaréné.", s: "status-examen", l: "Examen", v: 890 },
-    { id: 4, p: "Ngounié (G4)", t: "Marché Moderne Mouila", d: "Nouvelles halles avec froid solaire.", s: "status-examen", l: "Examen", v: 450 },
-    { id: 5, p: "Nyanga (G5)", t: "Relance Rizicole", d: "Soutien aux petits producteurs de riz.", s: "status-cours", l: "En cours", v: 1100 },
-    { id: 6, p: "Ogooué-Ivindo (G6)", t: "Éco-tourisme Kongou", d: "Aménagement durable des chutes.", s: "status-retenu", l: "Retenu", v: 760 },
-    { id: 7, p: "Ogooué-Lolo (G7)", t: "Kits Agricoles", d: "Distribution de semences améliorées.", s: "status-examen", l: "Examen", v: 340 },
-    { id: 8, p: "Ogooué-Maritime (G8)", t: "Usine de Glace", d: "Pour les pêcheurs de Port-Gentil.", s: "status-cours", l: "En cours", v: 2900 },
-    { id: 9, p: "Woleu-Ntem (G9)", t: "Bitumage Oyem-Bitam", d: "Réhabilitation de l'axe frontalier.", s: "status-examen", l: "Examen", v: 5400 }
+  let totalVotes = 14;
+  const idees = [
+    { id: 1, p: "Estuaire (G1)", t: "Navettes maritimes Owendo", d: "Fluidifier le transport urbain par l'estuaire.", s: "En cours", c: "#2196f3", prog: 65, b: "1.2 Mrd FCFA", v: 4205 },
+    { id: 2, p: "Haut-Ogooué (G2)", t: "Cité Étudiante Masuku", d: "Rénovation des pavillons universitaires.", s: "Retenu", c: "#4caf50", prog: 30, b: "850 M FCFA", v: 1200 },
+    { id: 3, p: "Ogooué-Maritime (G8)", t: "Chantier Naval Artisanal", d: "Modernisation des équipements de pêche à POG.", s: "Retenu", c: "#4caf50", prog: 40, b: "450 M FCFA", v: 2100 },
+    { id: 4, p: "Woleu-Ntem (G9)", t: "Route Oyem-Bitam", d: "Réfection totale de l'axe frontalier.", s: "Examen", c: "#ff9800", prog: 10, b: "Audit en cours", v: 8900 },
+    { id: 5, p: "Ogooué-Lolo (G7)", t: "Kits Agricoles Bio", d: "Aide aux coopératives de Koulamoutou.", s: "Examen", c: "#ff9800", prog: 15, b: "120 M FCFA", v: 340 },
+    { id: 6, p: "Nyanga (G5)", t: "Usine de Riz Tchibanga", d: "Relance de la production locale.", s: "En cours", c: "#2196f3", prog: 20, b: "600 M FCFA", v: 1100 }
   ];
 
-  function render() {
-    const c = document.getElementById('ideesContainer');
-    c.innerHTML = '';
-    data.forEach(i => {
-      c.innerHTML += `
+  function render(list) {
+    const cont = document.getElementById('container');
+    cont.innerHTML = '';
+    list.forEach(i => {
+      cont.innerHTML += `
         <div class="idee-card">
-          <div class="status-light ${i.s}"><span class="light" style="background:currentColor"></span> ${i.l}</div>
-          <h3 class="serif" style="color:var(--vert); margin-bottom:10px;">${i.t}</h3>
-          <p style="font-size:13px; color:var(--gris-moyen); flex-grow:1;">${i.d}</p>
-          <div style="margin-top:20px; display:flex; justify-content:space-between; align-items:center; border-top:1px solid #eee; padding-top:15px;">
-            <span style="font-size:10px; font-weight:700;">${i.p}</span>
-            <span style="font-weight:700; font-size:12px; color:var(--vert);">▲ ${i.v}</span>
+          <div class="status-line">
+            <div class="light-tag" style="color:${i.c}"><span class="dot" style="background:currentColor"></span> ${i.s}</div>
+            <span style="font-size:10px; font-weight:700; color:var(--vert);">💰 ${i.b}</span>
+          </div>
+          <h3 class="serif" style="font-size:22px;">${i.t}</h3>
+          <p style="font-size:13px; color:#666; margin:10px 0; flex-grow:1;">${i.d}</p>
+          <div style="font-size:10px; font-weight:700; margin-top:15px; display:flex; justify-content:space-between;">
+            <span>TRAITEMENT</span><span>${i.prog}%</span>
+          </div>
+          <div class="prog-bg"><div class="prog-bar" style="width:${i.prog}%; background:${i.c}"></div></div>
+          <div class="status-line" style="margin-top:15px; padding-top:15px; border-top:1px solid #f5f5f5;">
+            <button class="btn-vote" onclick="vote(this)">▲ ${i.v}</button>
+            <span style="font-size:10px; font-weight:700; opacity:0.5;">${i.p}</span>
           </div>
         </div>
       `;
     });
   }
 
-  function openModal() { document.getElementById('modalIdea').classList.add('active'); }
-  function closeModal() { document.getElementById('modalIdea').classList.remove('active'); }
+  function filter() {
+    const txt = document.getElementById('search').value.toLowerCase();
+    const pr = document.getElementById('provFilter').value;
+    const f = idees.filter(i => (i.t.toLowerCase().includes(txt) || i.d.toLowerCase().includes(txt)) && (pr === "all" || i.p === pr));
+    render(f);
+  }
+
+  function vote(btn) {
+    if(!btn.classList.contains('active')) {
+      btn.classList.add('active');
+      totalVotes++;
+      document.getElementById('vCount').innerText = totalVotes;
+      if(totalVotes > 15) document.getElementById('userRank').innerText = "⭐ Rang : Bâtisseur | " + totalVotes + " votes";
+    }
+  }
+
+  function openModal() { document.getElementById('modal').classList.add('active'); }
+  function closeModal() { document.getElementById('modal').classList.remove('active'); }
 
   document.getElementById('ideaForm').onsubmit = (e) => {
     e.preventDefault();
-    data.unshift({
-      id: Date.now(),
-      p: document.getElementById('f-province').value,
-      t: document.getElementById('f-titre').value,
-      d: document.getElementById('f-desc').value,
-      s: "status-examen", l: "Nouveau", v: 1
+    idees.unshift({
+      id: Date.now(), p: document.getElementById('f-prov').value,
+      t: document.getElementById('f-titre').value, d: document.getElementById('f-desc').value,
+      s: "Nouveau", c: "#999", prog: 0, b: "À définir", v: 1
     });
-    save(); closeModal();
+    render(idees); closeModal();
   };
 
-  function save() { render(); } // Ici on pourrait ajouter localStorage.setItem
-  render();
+  render(idees);
 </script>
 </body>
 </html>
