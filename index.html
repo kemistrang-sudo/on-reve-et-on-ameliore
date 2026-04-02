@@ -7,260 +7,77 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --vert: #0B4F2E;
-    --vert-clair: #1a7a47;
-    --vert-pale: #e8f4ee;
-    --jaune: #FEDD00;
-    --jaune-fonce: #d4b800;
-    --bleu: #2E6DB0;
-    --bleu-clair: #4a8fd4;
-    --bleu-pale: #e8f0fa;
-    --blanc: #FFFFFF;
-    --gris: #2C2C2C;
-    --gris-clair: #f5f5f3;
-    --gris-moyen: #8a8a8a;
-    --shadow-premium: 0 20px 40px rgba(0,0,0,0.08);
+    --vert: #0B4F2E; --vert-clair: #1a7a47; --vert-pale: #e8f4ee;
+    --jaune: #FEDD00; --jaune-fonce: #d4b800;
+    --bleu: #2E6DB0; --bleu-clair: #4a8fd4; --bleu-pale: #e8f0fa;
+    --blanc: #FFFFFF; --gris: #2C2C2C; --gris-clair: #f5f5f3; --gris-moyen: #8a8a8a;
+    --statut-examen: #ff9800; --statut-retenu: #4caf50; --statut-cours: #2196f3;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Poppins', sans-serif; color: var(--gris); background: var(--blanc); overflow-x: hidden; scroll-behavior: smooth; }
+  h1, h2, h3, h4, .serif { font-family: 'Cormorant Garamond', serif; }
 
-  body {
-    font-family: 'Poppins', sans-serif;
-    color: var(--gris);
-    background: var(--blanc);
-    overflow-x: hidden;
-    scroll-behavior: smooth;
-  }
-
-  h1, h2, h3, .serif { font-family: 'Cormorant Garamond', serif; }
-
-  /* ===== BARRE NATIONALE ===== */
+  /* BARRE NATIONALE */
   .barre-nationale { display: flex; height: 6px; width: 100%; position: fixed; top: 0; z-index: 1001; }
   .barre-nationale span { flex: 1; }
   .barre-nationale .v { background: var(--vert); }
   .barre-nationale .j { background: var(--jaune); }
   .barre-nationale .b { background: var(--bleu); }
 
-  /* ===== HEADER ===== */
-  header {
-    background: var(--vert);
-    padding: 0 48px;
-    position: sticky;
-    top: 6px;
-    z-index: 100;
-    box-shadow: 0 2px 20px rgba(0,0,0,0.3);
-  }
-
-  .header-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 72px;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  .logo { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+  /* HEADER */
+  header { background: var(--vert); padding: 0 48px; position: sticky; top: 6px; z-index: 1000; box-shadow: 0 2px 20px rgba(0,0,0,0.3); }
+  .header-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; max-width: 1200px; margin: 0 auto; }
   .logo-text h1 { color: var(--blanc); font-size: 20px; font-weight: 700; line-height: 1.1; }
-  .logo-text p { color: var(--jaune); font-size: 10px; font-weight: 300; letter-spacing: 2px; text-transform: uppercase; }
-
+  .logo-text p { color: var(--jaune); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; }
   nav { display: flex; align-items: center; gap: 32px; }
   nav a { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 13px; font-weight: 500; transition: 0.2s; }
   nav a:hover { color: var(--jaune); }
+  .btn-connexion { background: var(--jaune); color: var(--vert) !important; padding: 9px 22px !important; border-radius: 4px; font-weight: 600 !important; }
 
-  .btn-connexion {
-    background: var(--jaune);
-    color: var(--vert) !important;
-    padding: 9px 22px !important;
-    border-radius: 4px;
-    font-weight: 600 !important;
-  }
-
-  /* ===== HERO ===== */
-  .hero {
-    background: var(--vert);
-    position: relative;
-    padding: 90px 48px;
-    min-height: 500px;
-    display: flex;
-    align-items: center;
-  }
-
-  .hero-content { max-width: 1200px; margin: 0 auto; width: 100%; z-index: 2; position: relative; }
-  .hero h2 { font-size: clamp(40px, 5vw, 64px); color: var(--blanc); line-height: 1.1; margin-bottom: 24px; }
+  /* HERO */
+  .hero { background: var(--vert); padding: 120px 48px; min-height: 550px; display: flex; align-items: center; }
+  .hero h2 { font-size: clamp(40px, 5vw, 72px); color: var(--blanc); line-height: 1.1; margin-bottom: 24px; }
   .hero h2 em { color: var(--jaune); font-style: italic; }
-  .hero p.lead { color: rgba(255,255,255,0.8); font-size: 18px; max-width: 600px; margin-bottom: 40px; font-weight: 300; }
-
-  .btn-primary, .btn-secondary {
-    padding: 16px 32px;
-    border-radius: 6px;
-    font-weight: 600;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    transition: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    cursor: pointer;
-    border: none;
-  }
-
+  .hero p.lead { color: rgba(255,255,255,0.8); font-size: 18px; max-width: 600px; margin-bottom: 40px; }
+  .btn-primary, .btn-secondary { padding: 16px 32px; border-radius: 6px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 12px; transition: 0.3s; cursor: pointer; border: none; }
   .btn-primary { background: var(--jaune); color: var(--vert); }
-  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); background: var(--blanc); }
+  .btn-secondary { background: rgba(255,255,255,0.1); color: var(--blanc); border: 1px solid rgba(255,255,255,0.2); margin-left: 10px; }
 
-  .btn-secondary { background: rgba(255,255,255,0.1); color: var(--blanc); border: 1px solid rgba(255,255,255,0.2); }
-  .btn-secondary:hover { background: rgba(255,255,255,0.2); border-color: var(--jaune); }
+  /* STATS */
+  .stats-bar { background: var(--blanc); padding: 40px; border-radius: 12px; max-width: 1100px; margin: -40px auto 0; box-shadow: 0 20px 40px rgba(0,0,0,0.1); position: relative; z-index: 10; }
+  .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; text-align: center; }
 
-  /* ===== MODALE PREMIUM (Apple/GovTech Style) ===== */
-  .modal-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(11, 79, 46, 0.85);
-    backdrop-filter: blur(8px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 2000;
-    opacity: 0;
-    pointer-events: none;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .modal-overlay.active { opacity: 1; pointer-events: auto; }
-
-  .modal-card {
-    background: var(--blanc);
-    width: 100%;
-    max-width: 650px;
-    border-radius: 24px;
-    overflow: hidden;
-    transform: translateY(40px) scale(0.95);
-    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-    box-shadow: 0 30px 60px rgba(0,0,0,0.4);
-  }
-
-  .modal-overlay.active .modal-card { transform: translateY(0) scale(1); }
-
-  .modal-header {
-    background: var(--vert-pale);
-    padding: 32px 40px;
-    position: relative;
-  }
-
-  .modal-header h2 { color: var(--vert); font-size: 28px; }
-  .modal-header p { color: var(--vert-clair); font-size: 14px; opacity: 0.8; }
-
-  .btn-close {
-    position: absolute;
-    top: 24px;
-    right: 24px;
-    background: var(--blanc);
-    border: none;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: 0.2s;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  }
-  .btn-close:hover { background: var(--jaune); transform: rotate(90deg); }
-
-  .modal-body { padding: 40px; }
-
-  .form-group { margin-bottom: 24px; }
-  .form-group label { display: block; font-size: 13px; font-weight: 600; color: var(--vert); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
-  
-  .form-control {
-    width: 100%;
-    padding: 14px 18px;
-    border: 2px solid var(--gris-clair);
-    border-radius: 12px;
-    font-family: inherit;
-    font-size: 15px;
-    transition: all 0.2s;
-    background: var(--gris-clair);
-  }
-
-  .form-control:focus {
-    outline: none;
-    border-color: var(--vert);
-    background: var(--blanc);
-    box-shadow: 0 0 0 4px var(--vert-pale);
-  }
-
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-
-  .btn-submit {
-    width: 100%;
-    padding: 18px;
-    background: var(--vert);
-    color: var(--blanc);
-    border: none;
-    border-radius: 12px;
-    font-weight: 600;
-    font-size: 16px;
-    cursor: pointer;
-    transition: 0.3s;
-    margin-top: 10px;
-  }
-  .btn-submit:hover { background: var(--vert-clair); transform: translateY(-2px); }
-
-  /* ===== VOTE SYSTEM ===== */
-  .idees-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    gap: 32px;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 40px 0;
-  }
-
-  .idee-card {
-    background: var(--blanc);
-    border-radius: 16px;
-    border: 1px solid var(--gris-clair);
-    padding: 32px;
-    transition: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    display: flex;
-    flex-direction: column;
-  }
-
-  .idee-card:hover { transform: translateY(-8px); border-color: var(--vert); box-shadow: var(--shadow-premium); }
-
-  .vote-btn {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background: var(--gris-clair);
-    border: none;
-    padding: 10px 20px;
-    border-radius: 50px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.3s;
-    color: var(--gris);
-  }
-
-  .vote-btn.active {
-    background: var(--vert);
-    color: var(--jaune);
-    animation: pop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  }
-
-  @keyframes pop {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.2); }
-    100% { transform: scale(1); }
-  }
-
-  .section-title { font-size: 42px; color: var(--vert); margin-bottom: 40px; text-align: center; }
-
-  /* Utilities */
-  .hidden { display: none; }
+  /* SECTION & CARDS */
   section { padding: 100px 48px; }
+  .section-title { font-size: 42px; text-align: center; margin-bottom: 50px; color: var(--vert); }
+  .idees-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
+  
+  .idee-card { background: var(--blanc); padding: 30px; border-radius: 16px; border: 1px solid var(--gris-clair); transition: 0.3s; position: relative; display: flex; flex-direction: column; }
+  .idee-card:hover { transform: translateY(-10px); border-color: var(--jaune); box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
 
+  /* LES LUMIÈRES (STATUTS) */
+  .status-light { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 600; text-transform: uppercase; margin-bottom: 15px; }
+  .light { width: 8px; height: 8px; border-radius: 50%; display: inline-block; box-shadow: 0 0 10px currentColor; animation: pulse 2s infinite; }
+  @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+  .status-examen { color: var(--statut-examen); }
+  .status-retenu { color: var(--statut-retenu); }
+  .status-cours { color: var(--statut-cours); }
+
+  /* VOTES */
+  .vote-btn { border: 1px solid var(--gris-clair); background: var(--gris-clair); padding: 10px 20px; border-radius: 30px; cursor: pointer; transition: 0.3s; font-weight: 700; font-family: 'Poppins'; }
+  .vote-btn.active { background: var(--vert); color: var(--jaune); border-color: var(--vert); transform: scale(1.05); }
+
+  /* MODALE PREMIUM */
+  .modal-overlay { position: fixed; inset: 0; background: rgba(11, 79, 46, 0.8); backdrop-filter: blur(12px); display: flex; align-items: center; justify-content: center; z-index: 2000; opacity: 0; pointer-events: none; transition: 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); }
+  .modal-overlay.active { opacity: 1; pointer-events: auto; }
+  .modal-card { background: var(--blanc); width: 90%; max-width: 650px; border-radius: 24px; padding: 45px; transform: scale(0.9) translateY(30px); transition: 0.5s cubic-bezier(0.165, 0.84, 0.44, 1); box-shadow: 0 30px 60px rgba(0,0,0,0.3); }
+  .modal-overlay.active .modal-card { transform: scale(1) translateY(0); }
+  .form-control { width: 100%; padding: 14px; border: 2px solid var(--gris-clair); border-radius: 12px; margin-top: 6px; margin-bottom: 22px; font-family: 'Poppins'; font-size: 14px; transition: 0.2s; }
+  .form-control:focus { outline: none; border-color: var(--vert); background: var(--blanc); }
+
+  /* FOOTER */
+  footer { background: #151515; color: var(--blanc); padding: 80px 48px 40px; }
 </style>
 </head>
 <body>
@@ -271,15 +88,10 @@
 
 <header>
   <div class="header-inner">
-    <a href="#" class="logo">
-      <div class="logo-text">
-        <h1>Mon Gabon Demain</h1>
-        <p>Plateforme Citoyenne</p>
-      </div>
-    </a>
+    <div class="logo-text"><h1>Mon Gabon Demain</h1><p>Plateforme Citoyenne</p></div>
     <nav>
       <a href="#idees">Explorer</a>
-      <a href="#impact">Impact</a>
+      <a href="#provinces">Provinces</a>
       <a href="#" class="btn-connexion">Espace Citoyen</a>
     </nav>
   </div>
@@ -288,198 +100,147 @@
 <section class="hero">
   <div class="hero-content">
     <h2>Le futur du <em>Gabon</em><br>s'écrit avec vous.</h2>
-    <p class="lead">Une plateforme sécurisée pour transformer vos idées en actions concrètes. Rejoignez 12 847 citoyens engagés.</p>
-    <div class="hero-actions">
-      <button class="btn-primary" onclick="openModal()">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-        Proposer une idée
-      </button>
+    <p class="lead">Proposez des projets pour votre province et votez pour les meilleures idées nationales.</p>
+    <div>
+      <button class="btn-primary" onclick="openModal()">+ Proposer une idée</button>
       <a href="#idees" class="btn-secondary">Voir les propositions</a>
     </div>
   </div>
 </section>
 
-<section id="idees" style="background: var(--gris-clair);">
-  <h2 class="section-title">Propositions populaires</h2>
+<div class="stats-bar">
+  <div class="stats-grid">
+    <div><h4 style="font-size:32px; color:var(--vert);">12.8k</h4><p style="font-size:10px; color:var(--gris-moyen);">CITOYENS</p></div>
+    <div><h4 style="font-size:32px; color:var(--vert);">1,240</h4><p style="font-size:10px; color:var(--gris-moyen);">IDÉES</p></div>
+    <div><h4 style="font-size:32px; color:var(--vert);">45</h4><p style="font-size:10px; color:var(--gris-moyen);">RÉALISÉS</p></div>
+    <div><h4 style="font-size:32px; color:var(--vert);">09</h4><p style="font-size:10px; color:var(--gris-moyen);">PROVINCES</p></div>
+  </div>
+</div>
+
+<section id="idees" style="background:var(--gris-clair)">
+  <h2 class="section-title">Les 9 Provinces se mobilisent</h2>
   <div class="idees-grid" id="ideesContainer">
     </div>
 </section>
 
 <div class="modal-overlay" id="modalIdea">
   <div class="modal-card">
-    <button class="btn-close" onclick="closeModal()">×</button>
-    <div class="modal-header">
-      <h2>Nouvelle Proposition</h2>
-      <p>Votre idée sera examinée par la communauté puis par la Fabrique Citoyenne.</p>
-    </div>
-    <div class="modal-body">
-      <form id="ideaForm">
-        <div class="form-group">
-          <label>Titre de votre projet</label>
-          <input type="text" class="form-control" placeholder="Ex: Modernisation des écoles de l'Ogooué" required id="f-titre">
+    <h2 class="serif" style="font-size:32px; margin-bottom:10px; color:var(--vert);">Nouvelle Proposition</h2>
+    <p style="color:var(--gris-moyen); font-size:14px; margin-bottom:30px;">Votre idée sera soumise au vote citoyen avant étude technique.</p>
+    
+    <form id="ideaForm">
+      <label style="font-size:11px; font-weight:700; letter-spacing:1px;">TITRE DU PROJET</label>
+      <input type="text" id="f-titre" class="form-control" placeholder="Ex: Centre de santé à Lastourville" required>
+      
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+        <div>
+          <label style="font-size:11px; font-weight:700; letter-spacing:1px;">PROVINCE</label>
+          <select id="f-province" class="form-control">
+            <option>Estuaire (G1)</option>
+            <option>Haut-Ogooué (G2)</option>
+            <option>Moyen-Ogooué (G3)</option>
+            <option>Ngounié (G4)</option>
+            <option>Nyanga (G5)</option>
+            <option>Ogooué-Ivindo (G6)</option>
+            <option>Ogooué-Lolo (G7)</option>
+            <option>Ogooué-Maritime (G8)</option>
+            <option>Woleu-Ntem (G9)</option>
+          </select>
         </div>
-        
-        <div class="form-row">
-          <div class="form-group">
-            <label>Province</label>
-            <select class="form-control" id="f-province">
-              <option>Estuaire</option>
-              <option>Haut-Ogooué</option>
-              <option>Moyen-Ogooué</option>
-              <option>Ngounié</option>
-              <option>Nyanga</option>
-              <option>Ogooué-Ivindo</option>
-              <option>Ogooué-Lolo</option>
-              <option>Ogooué-Maritime</option>
-              <option>Woleu-Ntem</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Catégorie</label>
-            <select class="form-control" id="f-cat">
-              <option>Santé</option>
-              <option>Éducation</option>
-              <option>Infrastructures</option>
-              <option>Numérique</option>
-              <option>Économie</option>
-            </select>
-          </div>
+        <div>
+          <label style="font-size:11px; font-weight:700; letter-spacing:1px;">DOMAINE</label>
+          <select id="f-cat" class="form-control">
+            <option>Éducation</option>
+            <option>Santé</option>
+            <option>Infrastructures</option>
+            <option>Agriculture</option>
+            <option>Numérique</option>
+          </select>
         </div>
+      </div>
 
-        <div class="form-group">
-          <label>Description détaillée</label>
-          <textarea class="form-control" rows="4" placeholder="Expliquez votre idée, le problème identifié et la solution proposée..." required id="f-desc"></textarea>
-        </div>
+      <label style="font-size:11px; font-weight:700; letter-spacing:1px;">VOTRE SOLUTION</label>
+      <textarea id="f-desc" class="form-control" rows="4" placeholder="Décrivez l'impact positif pour les populations..." required></textarea>
 
-        <button type="submit" class="btn-submit">Publier ma proposition nationale</button>
-      </form>
-    </div>
+      <div style="display:flex; gap:15px; margin-top:10px;">
+        <button type="submit" class="btn-primary" style="flex:2; justify-content:center;">Publier ma proposition</button>
+        <button type="button" onclick="closeModal()" style="flex:1; background:var(--gris-clair); border:none; border-radius:6px; cursor:pointer; font-weight:600;">Annuler</button>
+      </div>
+    </form>
   </div>
 </div>
 
+<footer>
+  <div style="max-width:1200px; margin:0 auto; text-align:center;">
+    <h3 class="serif" style="font-size:32px; margin-bottom:20px;">Mon Gabon Demain</h3>
+    <p style="opacity:0.6; font-size:14px; max-width:500px; margin:0 auto;">Le portail citoyen pour co-construire le pays. Chaque voix compte pour l'essor vers la félicité.</p>
+    <div style="margin-top:50px; border-top:1px solid rgba(255,255,255,0.1); padding-top:25px; font-size:12px; display:flex; justify-content:center; gap:30px;">
+      <span>© 2025 République Gabonaise</span>
+      <a href="#" style="color:white; text-decoration:none;">RGPD</a>
+      <a href="#" style="color:white; text-decoration:none;">Audit CNNC</a>
+    </div>
+  </div>
+</footer>
+
 <script>
-  /**
-   * DATA INITIALE & GESTION DU STORE
-   */
+  // Base de données avec les provinces réelles
   let idees = JSON.parse(localStorage.getItem('gabon_idees')) || [
-    {
-      id: 1,
-      titre: "Centres de santé ruraux connectés",
-      desc: "Déployer un réseau de 45 centres de santé équipés dans les zones enclavées avec télémédecine.",
-      author: "M. Essono",
-      province: "Ogooué-Ivindo",
-      cat: "Santé",
-      votes: 2341,
-      voted: false
-    },
-    {
-      id: 2,
-      titre: "Tablettes numériques pour lycéens",
-      desc: "Doter chaque lycéen de manuels nationaux numérisés pour réduire la fracture digitale.",
-      author: "Rose Nzamba",
-      province: "Estuaire",
-      cat: "Éducation",
-      votes: 1887,
-      voted: false
-    }
+    { id: 1, titre: "Électrification solaire rurale", desc: "Installation de kits solaires dans 12 villages reculés.", status: "status-retenu", statusLabel: "Retenu", votes: 2150, voted: false, province: "Woleu-Ntem (G9)", cat: "Énergie" },
+    { id: 2, titre: "Modernisation du port de pêche", desc: "Nouveaux entrepôts frigorifiques pour les pêcheurs locaux.", status: "status-examen", statusLabel: "En examen", votes: 1420, voted: false, province: "Ogooué-Maritime (G8)", cat: "Infrastructures" },
+    { id: 3, titre: "Bus scolaires communaux", desc: "Renforcement de la flotte de transport pour les lycéens.", status: "status-cours", statusLabel: "En cours", votes: 945, voted: false, province: "Estuaire (G1)", cat: "Éducation" }
   ];
 
-  /**
-   * RENDU DES CARTES
-   */
-  function renderIdees() {
+  function render() {
     const container = document.getElementById('ideesContainer');
     container.innerHTML = '';
-
-    idees.forEach(idee => {
-      const card = document.createElement('div');
-      card.className = 'idee-card';
-      card.innerHTML = `
-        <div style="margin-bottom: 20px">
-          <span style="font-size:10px; font-weight:700; text-transform:uppercase; color:var(--bleu); background:var(--bleu-pale); padding:4px 10px; border-radius:4px; margin-bottom:12px; display:inline-block;">${idee.cat}</span>
-          <h3 style="font-size:22px; color:var(--vert); margin-bottom:10px;">${idee.titre}</h3>
-          <p style="font-size:14px; color:var(--gris-moyen); line-height:1.6; margin-bottom:20px;">${idee.desc}</p>
-        </div>
-        <div style="margin-top:auto; display:flex; align-items:center; justify-content:space-between; border-top:1px solid var(--gris-clair); pt:20px; padding-top:20px">
-          <div style="font-size:12px; color:var(--gris)">
-            <strong>${idee.author}</strong><br>
-            <span style="color:var(--gris-moyen)">${idee.province}</span>
+    idees.forEach(i => {
+      container.innerHTML += `
+        <div class="idee-card">
+          <div class="status-light ${i.status}">
+            <span class="light" style="background:currentColor"></span> ${i.statusLabel}
           </div>
-          <button class="vote-btn ${idee.voted ? 'active' : ''}" onclick="toggleVote(${idee.id})">
-            <span>▲</span>
-            <span class="v-count">${idee.votes.toLocaleString()}</span>
-          </button>
+          <h3 class="serif" style="font-size:24px; color:var(--vert); margin-bottom:12px;">${i.titre}</h3>
+          <p style="font-size:14px; color:var(--gris-moyen); line-height:1.6; margin-bottom:25px; flex-grow:1;">${i.desc}</p>
+          <div style="display:flex; justify-content:space-between; align-items:center; padding-top:20px; border-top:1px solid var(--gris-clair)">
+            <div style="font-size:11px;">
+              <span style="color:var(--vert-clair); font-weight:700;">${i.province}</span><br>
+              <span style="color:var(--gris-moyen)">${i.cat}</span>
+            </div>
+            <button class="vote-btn ${i.voted?'active':''}" onclick="vote(${i.id})">
+              ▲ ${i.votes.toLocaleString()}
+            </button>
+          </div>
         </div>
       `;
-      container.appendChild(card);
     });
   }
 
-  /**
-   * SYSTÈME DE VOTE
-   */
-  function toggleVote(id) {
-    const index = idees.findIndex(i => i.id === id);
-    if (index === -1) return;
-
-    if (!idees[index].voted) {
-      idees[index].votes++;
-      idees[index].voted = true;
-    } else {
-      idees[index].votes--;
-      idees[index].voted = false;
-    }
-    
-    saveAndRefresh();
+  function vote(id) {
+    const i = idees.find(x => x.id === id);
+    i.voted ? (i.votes--, i.voted = false) : (i.votes++, i.voted = true);
+    save();
   }
 
-  /**
-   * GESTION MODALE
-   */
-  function openModal() {
-    document.getElementById('modalIdea').classList.add('active');
-    document.body.style.overflow = 'hidden';
-  }
+  function openModal() { document.getElementById('modalIdea').classList.add('active'); document.body.style.overflow='hidden'; }
+  function closeModal() { document.getElementById('modalIdea').classList.remove('active'); document.body.style.overflow='auto'; }
 
-  function closeModal() {
-    document.getElementById('modalIdea').classList.remove('active');
-    document.body.style.overflow = 'auto';
-  }
-
-  /**
-   * AJOUT D'IDÉE
-   */
-  document.getElementById('ideaForm').addEventListener('submit', (e) => {
+  document.getElementById('ideaForm').onsubmit = (e) => {
     e.preventDefault();
-    
-    const newIdee = {
+    idees.unshift({
       id: Date.now(),
       titre: document.getElementById('f-titre').value,
       desc: document.getElementById('f-desc').value,
+      status: "status-examen", statusLabel: "Nouveau",
+      votes: 1, voted: true,
       province: document.getElementById('f-province').value,
-      cat: document.getElementById('f-cat').value,
-      author: "Citoyen Anonyme",
-      votes: 1,
-      voted: true
-    };
-
-    idees.unshift(newIdee);
-    saveAndRefresh();
-    closeModal();
-    document.getElementById('ideaForm').reset();
-    
-    // Smooth scroll to news
+      cat: document.getElementById('f-cat').value
+    });
+    save(); closeModal(); document.getElementById('ideaForm').reset();
     window.location.hash = "idees";
-  });
+  };
 
-  function saveAndRefresh() {
-    localStorage.setItem('gabon_idees', JSON.stringify(idees));
-    renderIdees();
-  }
-
-  // Initialisation
-  document.addEventListener('DOMContentLoaded', renderIdees);
+  function save() { localStorage.setItem('gabon_idees', JSON.stringify(idees)); render(); }
+  render();
 </script>
-
 </body>
 </html>
